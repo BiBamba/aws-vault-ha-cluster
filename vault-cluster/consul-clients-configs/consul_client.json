@@ -1,0 +1,24 @@
+{
+   "addresses" : {
+           "dns" : "0.0.0.0",
+           "https" : "0.0.0.0"
+   },
+   "ca_file" : "/usr/local/etc/consul/certs/consul-agent-ca.pem",
+   "cert_file" : "/usr/local/etc/consul/certs/dc1-client-consul-1.pem",
+   "datacenter" : "dc1",
+   "data_dir" : "/mnt/data/cstore",
+   "disable_remote_exec" : true,
+   "enable_syslog" : true,
+   "key_file" : "/usr/local/etc/consul/certs/dc1-client-consul-1-key.pem",
+   "log_level" : "INFO",
+   "node_name" : "consul_client2",
+   "ports" : {
+           "https" : 8443
+   },
+   "raft_protocol" : 2,
+   "reconnect_timeout" : "8h",
+   "retry_join" : ["ip-add-consul_s1", "ip-add-consul_s2", "ip-add-consul_s1"],
+   "server" : false,
+   "verify_incoming" : true,
+   "verify_outgoing" : true
+ }

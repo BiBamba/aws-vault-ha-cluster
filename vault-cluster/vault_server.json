@@ -1,0 +1,40 @@
+{
+    "default_lease_ttl": "8h",
+    "max_lease_ttl": "17520h",
+    "plugin_directory": "/mnt/data/vault/plugins",
+    "log_level": "info",
+    "ui": true,
+    "disable_performance_standby": true,
+    "backend": {
+      "consul":{
+        "path":"vault/",
+        "address":"127.0.0.1:8443",
+        "scheme":"https",
+        "service":"vault",
+        "max_parallel":"128",
+        "tls_min_version":"tls12",
+        "tls_ca_file":"/usr/local/etc/consul/certs/consul-agent-ca.pem",
+        "tls_cert_file":"/usr/local/etc/consul/certs/dc1-client-consul-1.pem",
+        "tls_key_file":"/usr/local/etc/consul/certs/dc1-client-consul-1-key.pem"
+      }
+    },
+    "ha_backend": {
+      "consul":{
+        "path":"vault/",
+        "address":"127.0.0.1:8443",
+        "scheme":"https",
+        "service":"vault",
+        "max_parallel":"128",
+        "tls_min_version":"tls12",
+        "tls_ca_file":"/usr/local/etc/consul/certs/consul-agent-ca.pem",
+        "tls_cert_file":"/usr/local/etc/consul/certs/dc1-client-consul-1.pem",
+        "tls_key_file":"/usr/local/etc/consul/certs/dc1-client-consul-1-key.pem"
+      }
+    },
+    "listener": {
+      "tcp": {
+        "address":"0.0.0.0:8200",
+        "tls_disable": true
+       }
+    }
+  }
