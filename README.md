@@ -18,7 +18,7 @@ On each instance install consul
 `sudo yum install consul-1.8.3-2.x86_64`
 
 ## Prepare the security credentials
-####Generate the gossip encryption key
+#### Generate the gossip encryption key
 Generate the gossip encrypt key on one of the consul instance. Save that key in a file for later use
 `consul keygen`
 
