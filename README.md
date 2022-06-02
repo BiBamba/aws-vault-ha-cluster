@@ -115,9 +115,9 @@ Initialize Vault
 `vault operator init`
 
 On each vault node run:
-`vault operator unseal <unseal_key_1>`
-`vault operator unseal <unseal_key_2>`
-`vault operator unseal <unseal_key_3>`
+- `vault operator unseal <unseal_key_1>`
+- `vault operator unseal <unseal_key_2>`
+- `vault operator unseal <unseal_key_3>`
 
 
 
