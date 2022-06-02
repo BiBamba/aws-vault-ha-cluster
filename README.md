@@ -15,6 +15,7 @@ On each instance install consul
 
 ### Add the official HashiCorp Linux repository.
 `sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo`
+
 `sudo yum install consul-1.8.3-2.x86_64`
 
 ## Prepare the security credentials
