@@ -8,8 +8,11 @@
 ### Configuration of the clusters
 
 #### Consul Cluster
-1- Create this director `/usr/local/etc/consul` and `/usr/local/etc/consul/certs` on each consul server and consul client node 
+
+#### Consul Servers
+
 ssh -i key-pair ec2-user@ip-address to each instance of the consul-cluster-asg
+Create this director `/usr/local/etc/consul` and `/usr/local/etc/consul/certs` on each consul server node 
 
 On each instance install consul
 `sudo yum install -y yum-utils`
@@ -20,6 +23,7 @@ On each instance install consul
 `sudo yum install consul-1.8.3-2.x86_64`
 
 ## Prepare the security credentials
+
 #### Generate the gossip encryption key
 Generate the gossip encrypt key on one of the consul instance. Save that key in a file for later use
 `consul keygen`
@@ -27,7 +31,7 @@ Generate the gossip encrypt key on one of the consul instance. Save that key in 
 ### Generate TLS certificates for RPC encryption
 The following is done on one consul instance later get cpoied to the other instances
 
-##### Create the Certificate Authority
+#### Create the Certificate Authority
 `consul tls ca create`
 
 #### Create the certificates for each server
@@ -43,10 +47,11 @@ run the foolowing command on the instance where you have created the Certificate
 
 Create a configuration file /usr/local/etc/consul/consul.json for each consul agent:
 
-1-Consul servers
+#### Setup Consul servers agents on Consul nodes
+
 - Consul Servers config file:
-`sudo vim /usr/local/etc/consul/consul.json` then paste the content of aws-vault-ha-cluster/consul-cluster/consul_server.json of this repo
-`sudo chmod 640 /usr/local/etc/consul/consul.json`
+- `sudo vim /usr/local/etc/consul/consul.json` then paste the content of aws-vault-ha-cluster/consul-cluster/consul_server.json of this repo
+- `sudo chmod 640 /usr/local/etc/consul/consul.json`
 
 - Consul systemd unit file:
 `sudo vim /etc/systemd/system/consul.service` then paste the content of aws-vault-ha-cluster/consul-cluster/consul.service
@@ -84,7 +89,8 @@ Consul Client Agent Configuration
 Consul systemd Unit file:
 `sudo vim /etc/systemd/system/consul.service` then paste the content of aws-vault-ha-cluster/vault-cluster/consul-clients-configs/consul.service
 
-- Start and verify the Consul cluster state
+Start and verify the Consul cluster state
+
 Be sure that the ownership and permissions are correct on the directory you specified for the value of data_dir, and then start the Consul service on each system and verify the status.
 `sudo systemctl start consul`
 
@@ -96,20 +102,20 @@ Check the Consul agent status.
 Vault Configuration
 On each vault node run:
 
-`sudo mkdir /etc/vault`
-`sudo touch /etc/vault/vault.json`
-`sudo vim /etc/vault/vault.json` then paste the content of aws-vault-ha-cluster/vault-cluster/vault_server.json of this repo
-`sudo chmod 640 /etc/vault/vault.json`
+- `sudo mkdir /etc/vault`
+- `sudo touch /etc/vault/vault.json`
+- `sudo vim /etc/vault/vault.json` then paste the content of aws-vault-ha-cluster/vault-cluster/vault_server.json of this repo
+- `sudo chmod 640 /etc/vault/vault.json`
 
 Vault Server systemd Unit file
 
 On each vault node run:
 `sudo vim /etc/systemd/system/vault.service` then paste the content of aws-vault-ha-cluster/vault-cluster/vault.service
 
-`systemctl daemon-reload`
+- `systemctl daemon-reload`
 
-`sudo systemctl start vault`
-`sudo systemctl status vault`
+- `sudo systemctl start vault`
+- `sudo systemctl status vault`
 
 Initialize Vault
 `vault operator init`
